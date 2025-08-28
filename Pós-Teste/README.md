@@ -6,7 +6,7 @@ Este projeto consiste em uma aplicação web desenvolvida para o Pós Teste do M
 
 ## Autor
 
-*   **Fabio Costa**
+*   **Fabio Costa - Analista de Dados EDhec**
 
 ## Tecnologias Utilizadas
 
@@ -32,25 +32,18 @@ Para rodar este projeto em sua máquina local, siga os passos abaixo:
 
 ### Passos:
 
-1.  **Clone o repositório:**
-    ```bash
-    git clone <URL_DO_REPOSITORIO>
-    ```
-2.  **Navegue até o diretório do projeto:**
-    ```bash
-    cd <NOME_DO_PROJETO>
-    ```
-3.  **Instale as dependências:**
+1.  **Navegue até o diretório do projeto.**
+2.  **Instale as dependências:**
     ```bash
     npm install
     ```
-4.  **Configuração do Supabase (Variáveis de Ambiente):**
+3.  **Configuração do Supabase (Variáveis de Ambiente):**
     Este projeto utiliza variáveis de ambiente para se conectar ao Supabase. Crie um arquivo `.env` na raiz do projeto e insira suas credenciais do Supabase:
     ```
     VITE_SUPABASE_URL=SUA_URL_DO_SUPABASE
     VITE_SUPABASE_ANON_KEY=SUA_CHAVE_ANON_DO_SUPABASE
     ```
-5.  **Inicie o servidor de desenvolvimento:**
+4.  **Inicie o servidor de desenvolvimento:**
     ```bash
     npm run dev
     ```
@@ -67,8 +60,6 @@ O projeto está organizado da seguinte forma:
 ├── src/
 │   ├── components/        # Componentes reutilizáveis
 │   │   ├── ui/            # Componentes da biblioteca shadcn/ui
-│   │   ├── PreTestForm.tsx  # Componente principal do formulário
-│   │   └── SuccessPopup.tsx # Componente do popup de sucesso
 │   ├── hooks/             # Hooks customizados
 │   ├── integrations/      # Integrações com serviços externos
 │   │   └── supabase/      # Configuração do cliente e tipos do Supabase

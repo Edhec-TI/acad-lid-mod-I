@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+# Academia de Líderes - Cadastro de Alunos
 
-## Project info
+## Visão Geral do Projeto
 
-**URL**: https://lovable.dev/projects/4fcf56ed-6e64-4c7c-9a87-d61ce2dd6ec4
+Este projeto consiste em uma aplicação web desenvolvida para a Academia de Líderes, focada no registro e gerenciamento de alunos. A plataforma permite a inserção de novos participantes no sistema, garantindo que seus dados sejam armazenados de forma segura e estruturada para serem utilizados em outras aplicações do ecossistema, como os pré e pós testes.
 
-## How can I edit this code?
+## Autor
 
-There are several ways of editing your application.
+*   **Fabio Costa - Analista de Dados EDhec**
 
-**Use Lovable**
+## Tecnologias Utilizadas
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4fcf56ed-6e64-4c7c-9a87-d61ce2dd6ec4) and start prompting.
+A aplicação foi construída com as seguintes tecnologias:
 
-Changes made via Lovable will be committed automatically to this repo.
+*   **React:** Biblioteca para construção da interface de usuário.
+*   **TypeScript:** Superset do JavaScript que adiciona tipagem estática.
+*   **Vite:** Ferramenta de build e desenvolvimento front-end de alta performance.
+*   **Tailwind CSS:** Framework de estilização CSS "utility-first".
+*   **shadcn/ui:** Biblioteca de componentes de UI.
+*   **Supabase:** Plataforma open-source para backend, utilizada para o banco de dados.
+*   **React Hook Form:** Biblioteca para gerenciamento de formulários.
+*   **React Router DOM:** Biblioteca para o gerenciamento de rotas.
 
-**Use your preferred IDE**
+## Como Executar o Projeto Localmente
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Para rodar este projeto em sua máquina local, siga os passos abaixo:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Pré-requisitos:
 
-Follow these steps:
+*   Node.js (versão 18 ou superior)
+*   npm ou Yarn
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Passos:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1.  **Navegue até o diretório do projeto.**
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+3.  **Configuração do Supabase (Variáveis de Ambiente):**
+    Este projeto utiliza variáveis de ambiente para se conectar ao Supabase. Crie um arquivo `.env` na raiz do projeto e insira suas credenciais do Supabase:
+    ```
+    VITE_SUPABASE_URL=SUA_URL_DO_SUPABASE
+    VITE_SUPABASE_ANON_KEY=SUA_CHAVE_ANON_DO_SUPABASE
+    ```
+4.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+Após executar esses comandos, a aplicação estará disponível em `http://localhost:5173` (ou outra porta indicada pelo Vite).
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## Estrutura do Projeto
+
+O projeto está organizado da seguinte forma:
+
+```
+/
+├── public/                # Arquivos públicos
+├── src/
+│   ├── components/        # Componentes reutilizáveis
+│   │   ├── ui/            # Componentes da biblioteca shadcn/ui
+│   ├── hooks/             # Hooks customizados
+│   ├── integrations/      # Integrações com serviços externos
+│   │   └── supabase/      # Configuração do cliente e tipos do Supabase
+│   ├── lib/               # Funções utilitárias
+│   ├── pages/             # Páginas da aplicação
+│   ├── App.tsx            # Componente raiz com as rotas
+│   └── main.tsx           # Ponto de entrada da aplicação
+├── package.json
+└── vite.config.ts
 ```
 
-**Edit a file directly in GitHub**
+## Licença
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/4fcf56ed-6e64-4c7c-9a87-d61ce2dd6ec4) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Distribuído sob a licença MIT. Veja o arquivo `LICENSE` para mais informações.
