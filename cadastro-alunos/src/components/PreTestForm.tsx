@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import SuccessPopup from "./SuccessPopup";
 
 // Add Brazilian states constants
@@ -241,14 +240,15 @@ const PreTestForm = () => {
       });
       return;
     }
+
     setIsSubmitting(true);
+
     try {
-      const cpfOnly = unmaskCpf(formData.cpf);
       const payload = {
         nome_completo: formData.nomeCompleto,
         telefone: unmaskTelefone(formData.telefone),
         email: formData.email,
-        cpf: cpfOnly,
+        cpf: unmaskCpf(formData.cpf),
         idade: formData.idade,
         cidade_residencia: formData.cidadeResidencia,
         estado_residencia: formData.uf,
@@ -260,75 +260,44 @@ const PreTestForm = () => {
         estado_emocional: formData.estadoEmocional,
       };
 
-      // Verifica se o aluno já existe pelo CPF
-      const { data: existingAlunos, error: fetchError } = await supabase
-        .from("Cadastro_Alunos")
-        .select("cpf")
-        .eq("cpf", cpfOnly);
+      const response = await fetch('/api/alunos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
 
-      let error = null;
-
-      if (fetchError) {
-        console.error("Erro ao buscar aluno existente:", fetchError);
-        toast({
-          title: "Erro ao Enviar",
-          description: "Ocorreu um erro ao verificar o cadastro. Tente novamente.",
-          variant: "destructive"
-        });
-        setIsSubmitting(false);
-        return;
+      if (!response.ok) {
+        // Se a resposta não for OK, lança um erro para ser pego pelo catch
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Ocorreu um erro ao enviar o formulário.');
       }
 
-      if (existingAlunos && existingAlunos.length > 0) {
-        // Se o aluno existe, atualiza os dados, incluindo a data de atualização
-        const updatePayload = {
-          ...payload,
-          ultima_atualizacao: new Date().toISOString(),
-        };
-        const { error: updateError } = await supabase
-          .from("Cadastro_Alunos")
-          .update(updatePayload)
-          .eq("cpf", cpfOnly);
-        error = updateError;
-      } else {
-        // Se o aluno não existe, insere um novo registro (sem a data de atualização)
-        const { error: insertError } = await supabase
-          .from("Cadastro_Alunos")
-          .insert([payload]);
-        error = insertError;
-      }
+      // Se a resposta for OK, mostra o sucesso
+      setSuccessOpen(true);
+      setFormData({
+        nomeCompleto: "",
+        telefone: "",
+        email: "",
+        cpf: "",
+        idade: "",
+        cidadeResidencia: "",
+        uf: "",
+        escolaridade: "",
+        funcao: "",
+        funcaoOutros: "",
+        empresa: "",
+        cidadeTreinamento: "",
+        estadoTreinamento: "",
+        estadoEmocional: ""
+      });
 
-      if (error) {
-        console.error("Erro ao salvar no Supabase:", error);
-        toast({
-          title: "Erro ao Enviar",
-          description: "Ocorreu um erro ao salvar/atualizar no banco de dados. Tente novamente.",
-          variant: "destructive"
-        });
-      } else {
-        setSuccessOpen(true); // Abre o popup de sucesso!
-        setFormData({
-          nomeCompleto: "",
-          telefone: "",
-          email: "",
-          cpf: "",
-          idade: "",
-          cidadeResidencia: "",
-          uf: "",
-          escolaridade: "",
-          funcao: "",
-          funcaoOutros: "",
-          empresa: "",
-          cidadeTreinamento: "",
-          estadoTreinamento: "",
-          estadoEmocional: ""
-        });
-      }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erro ao submeter formulário:", error);
       toast({
         title: "Erro ao Enviar",
-        description: "Ocorreu um erro ao enviar o formulário. Tente novamente.",
+        description: error.message || "Ocorreu um erro ao enviar o formulário. Tente novamente.",
         variant: "destructive"
       });
     } finally {
