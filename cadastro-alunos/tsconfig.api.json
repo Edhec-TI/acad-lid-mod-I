@@ -1,16 +1,18 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.json", // Herda configurações base como paths
   "compilerOptions": {
-    "composite": true,
-    "target": "ES2022",
-    "lib": ["ES2023"],
+    "target": "ES2022", // Alvo moderno para Node.js
+    "lib": ["ES2022"],
     "module": "ESNext",
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "moduleDetection": "force",
-    "isolatedModules": true,
-    "noEmit": true,
-    "strict": true
+    "moduleResolution": "node", // Resolução de módulo para backend
+    "outDir": ".vercel/output/functions", // Vercel espera o output aqui
+    "rootDir": "api", // A raiz do nosso código de API
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false // <-- A CORREÇÃO MAIS IMPORTANTE
   },
-  "include": ["api"]
+  "include": ["api/**/*.ts"], // <-- A SEGUNDA CORREÇÃO IMPORTANTE
+  "exclude": ["node_modules"]
 }
