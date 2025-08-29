@@ -1,0 +1,1 @@
+{"extends": "./tsconfig.json", "compilerOptions": {"target": "ES2022", "lib": ["ES2022"], "module": "ESNext", "moduleResolution": "node", "outDir": ".vercel/output/functions", "rootDir": "api", "strict": true, "esModuleInterop": true, "skipLibCheck": true, "forceConsistentCasingInFileNames": true, "noEmit": false}, "include": ["api/**/*.ts"], "exclude": ["node_modules"]}
