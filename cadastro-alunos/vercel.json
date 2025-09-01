@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/alunos.ts": {
+      "runtime": "nodejs20.x"
+    }
+  }
+}
