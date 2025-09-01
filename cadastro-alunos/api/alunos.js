@@ -1,16 +1,11 @@
-
-import { createClient } from '@supabase/supabase-js';
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+const { createClient } = require('@supabase/supabase-js');
 
 // A inicialização do cliente Supabase é movida para dentro do handler
 // para usar as variáveis de ambiente do servidor de forma segura.
 const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
 
-export default async function handler(
-  request: VercelRequest,
-  response: VercelResponse,
-) {
+module.exports = async (request, response) => {
   // Permitir requisições de qualquer origem (CORS) - ajuste se necessário para produção
   response.setHeader('Access-Control-Allow-Origin', '*');
   response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -77,8 +72,8 @@ export default async function handler(
 
     return response.status(200).json({ message: successMessage });
 
-  } catch (error: any) {
+  } catch (error) {
     console.error("Erro inesperado:", error);
     return response.status(500).json({ error: 'Ocorreu um erro inesperado.', details: error.message });
   }
-}
+};
