@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/alunos.ts": {
-      "runtime": "@vercel/node@20"
+      "runtime": "nodejs20.x"
     }
   }
 }
