@@ -8,7 +8,7 @@
 
 ## ❯ Visão Geral
 
-Esta aplicação web fornece uma interface moderna e eficiente para a busca e visualização de certificados digitais. Desenvolvida para os participantes do treinamento "Academia de Líderes Módulo III", a plataforma permite que os usuários encontrem e baixem seus certificados de conclusão de forma rápida e intuitiva.
+Esta aplicação web fornece uma interface moderna e eficiente para a busca e visualização de certificados digitais. Desenvolvida para os participantes do treinamento "Academia de Líderes Módulo I", a plataforma permite que os usuários encontrem e baixem seus certificados de conclusão de forma rápida e intuitiva.
 
 A arquitetura do projeto é baseada em componentes reutilizáveis, utilizando as melhores práticas de desenvolvimento front-end para garantir escalabilidade e manutenibilidade.
 

@@ -19,12 +19,12 @@ export interface Student {
  */
 const mapRowToStudent = (row: any): Student => {
   return {
-    nome: row.nome_completo_aluno || '',
+    nome: row.nome_aluno || '',
     local: row.local_treinamento || '',
     dataConclusao: formatToBrazilianDate(row.data_conclusao || ''),
-    certificadoUrl: row.link_download_view || '',
-    downloadUrl: row.link_download_direct || '',
-    url_pdf_completo: row.link_download_view || '' // Nova propriedade
+    certificadoUrl: row.certificado_url || '',
+    downloadUrl: row.certificado_download_url || '',
+    url_pdf_completo: row.certificado_url || '' // Nova propriedade
     
   };
 };
@@ -38,7 +38,7 @@ export const fetchAllStudents = async (): Promise<Student[]> => {
     console.log('Buscando certificados no Supabase...');
     
     const { data, error } = await supabase
-      .from('certificados')
+            .from('certificado_digital')
       .select('*');
     
     if (error) {
@@ -82,7 +82,7 @@ export const searchStudents = async (searchTerm: string): Promise<Student[]> => 
     
     // Busca todos os dados primeiro
     const { data, error } = await supabase
-      .from('certificados')
+            .from('certificado_digital')
       .select('*');
     
     if (error) {

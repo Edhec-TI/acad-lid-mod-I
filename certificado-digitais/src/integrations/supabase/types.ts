@@ -72,17 +72,17 @@ export type Database = {
         }
         Relationships: []
       }
-      certificados: {
+      certificado_digital: {
         Row: {
           carga_horaria: string | null
           carimbo: string | null
-          link_download_direct: string | null
-          link_download_view: string | null
+          certificado_download_url: string | null
+          certificado_url: string | null
           data_conclusao: string | null
           id_certificado: string
           local_treinamento: string | null
           municipio_uf: string | null
-          nome_completo_aluno: string | null
+          nome_aluno: string | null
         }
         Insert: {
           carga_horaria?: string | null
@@ -93,7 +93,7 @@ export type Database = {
           id_certificado: string
           local_treinamento?: string | null
           municipio_uf?: string | null
-          nome_completo_aluno?: string | null
+          nome_aluno?: string | null
         }
         Update: {
           carga_horaria?: string | null
@@ -104,7 +104,7 @@ export type Database = {
           id_certificado?: string
           local_treinamento?: string | null
           municipio_uf?: string | null
-          nome_completo_aluno?: string | null
+          nome_aluno?: string | null
         }
         Relationships: []
       }
